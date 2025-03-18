@@ -5,15 +5,18 @@
     "type": "module",
     "scripts": {
         "dev": "vite dev",
-        "build": "vite build && bun run ./build.ts",
+        "build": "vite build && bun run ./postBuild.ts",
         "build:watch": "vite build --watch",
+        "build-ext": "vite build && bun run ./postBuild.ts && web-ext build -s ./build --overwrite-dest",
+        "sign-ext": "vite build && bun run ./postBuild.ts && ./sign-ext.sh",
         "preview": "vite preview",
         "clean": "rm -rf build",
         "prepare": "svelte-kit sync || echo ''",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
         "fmt": "prettier --write .",
-        "lint": "prettier --check . && eslint ."
+        "lint": "prettier --check . && eslint .",
+        "lint-ext": "web-ext lint"
     },
     "devDependencies": {
         "@eslint/compat": "^1.2.5",
@@ -35,6 +38,7 @@
         "tiny-glob": "^0.2.9",
         "typescript": "^5.0.0",
         "typescript-eslint": "^8.20.0",
-        "vite": "^6.0.0"
+        "vite": "^6.0.0",
+        "web-ext": "^8.5.0"
     }
 }

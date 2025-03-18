@@ -1,15 +1,22 @@
 {
     "$schema": "https://json.schemastore.org/chrome-manifest",
     "manifest_version": 3,
-
+    
     "name": "pcup",
     "description": "ppk",
     "version": "0.1.0",
+    
     "action": {
         "default_title": "pcup",
         "default_popup": "index.html",
         "default_icon": {
             "32": "favicon.png"
+        }
+    },
+
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "pcupext@trevrosa.dev"
         }
     }
 }
