@@ -1,15 +1,7 @@
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
-import { run } from "./removeInlineScript.cjs"
+import { sveltekit } from "@sveltejs/kit/vite";
+import { enhancedImages } from "@sveltejs/enhanced-img";
+import { defineConfig } from "vite";
 
 export default defineConfig({
-	plugins: [
-		sveltekit(),
-		{
-			name: 'remove inline script',
-			handleHotUpdate: run,
-			: run,
-			// buildEnd: run,
-		}
-	]
+    plugins: [sveltekit(), enhancedImages()],
 });
