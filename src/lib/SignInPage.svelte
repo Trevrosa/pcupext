@@ -33,7 +33,7 @@
         }
 
         // .Ok should not be null because (look above) if it was .Err, the function would have returned.
-        await setLocalStorage({ "session": sessionResult.Ok! });
+        await setLocalStorage({ session: sessionResult.Ok! });
     }
 </script>
 

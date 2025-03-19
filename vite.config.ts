@@ -6,7 +6,6 @@ import { enhancedImages } from "@sveltejs/enhanced-img";
 import viteCompression from "vite-plugin-compression";
 import { removeInlineScript } from "./src/removeInlineScript";
 
-
 const config: UserConfig = defineConfig({
     plugins: [
         sveltekit(),

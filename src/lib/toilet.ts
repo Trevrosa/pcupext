@@ -2,7 +2,7 @@
 
 /**
  * Cross-browser way to set the extension's local storage.
- * 
+ *
  * @param record the thing to be stored
  */
 export async function setLocalStorage(record: Record<string, unknown>) {
@@ -25,7 +25,7 @@ export async function setLocalStorage(record: Record<string, unknown>) {
 
 /**
  * Cross-browser way to get `key` from the extension's local storage.
- * 
+ *
  * @param key the thing to be gound
  */
 export async function getLocalStorage(key: string): Promise<unknown> {
