@@ -4,6 +4,7 @@
     "singleQuote": false,
     "trailingComma": "es5",
     "semi": true,
+    "endOfLine": "lf",
 
     "printWidth": 100,
     "plugins": ["prettier-plugin-svelte"],

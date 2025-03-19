@@ -14,6 +14,8 @@
         }
     },
 
+    "host_permissions": ["*://pcup.trevrosa.dev/*"],
+
     "browser_specific_settings": {
         "gecko": {
             "id": "pcupext@trevrosa.dev"

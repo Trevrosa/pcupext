@@ -25,8 +25,9 @@ export default ts.config(
     },
     {
         rules: {
-            "@stylistic/quotes": "error",
-            "@stylistic/semi": "error",
+            "@stylistic/quotes": "warn",
+            "@stylistic/semi": "warn",
+            "@stylistic/eol-last": "warn",
         },
     },
     {

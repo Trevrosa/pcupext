@@ -5,10 +5,10 @@
     "type": "module",
     "scripts": {
         "dev": "vite dev",
-        "build": "vite build && bun run ./postBuild.ts",
+        "build": "vite build",
         "build:watch": "vite build --watch",
-        "build-ext": "vite build && bun run ./postBuild.ts && web-ext build -s ./build --overwrite-dest",
-        "sign-ext": "vite build && bun run ./postBuild.ts && ./sign-ext.sh",
+        "build-ext": "vite build && web-ext build -s ./build --overwrite-dest",
+        "sign-ext": "vite build && ./sign-ext.sh",
         "preview": "vite preview",
         "clean": "rm -rf build",
         "prepare": "svelte-kit sync || echo ''",
