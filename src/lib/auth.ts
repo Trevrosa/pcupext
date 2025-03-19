@@ -7,6 +7,14 @@ export interface UserSession {
     userId: number;
 }
 
+/**
+ * send an authentication request
+ * 
+ * @param username the username
+ * @param password the password
+ * 
+ * @returns the user session, either Ok, or Err.
+ */
 export async function authenticate(
     username: string,
     password: string
