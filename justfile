@@ -35,7 +35,7 @@ check-watch: prepare
 fmt:
     bunx prettier --write .
 # check project files for eslint & prettier rule violations.
-lint: check
+lint:
     bunx prettier --check .
     bunx eslint .
 # run web-ext lint.

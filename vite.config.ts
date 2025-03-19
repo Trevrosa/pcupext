@@ -1,12 +1,15 @@
+import * as path from "node:path";
+import { defineConfig, type UserConfig } from "vite";
+
 import { sveltekit } from "@sveltejs/kit/vite";
 import { enhancedImages } from "@sveltejs/enhanced-img";
-import { defineConfig } from "vite";
 import viteCompression from "vite-plugin-compression";
 import { removeInlineScript } from "./src/removeInlineScript";
-import * as path from "node:path";
+import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig({
+const config: UserConfig = defineConfig({
     plugins: [
+        tailwindcss(),
         sveltekit(),
         enhancedImages(),
         viteCompression({ algorithm: "brotliCompress" }),
@@ -19,3 +22,5 @@ export default defineConfig({
         },
     ],
 });
+
+export default config;
