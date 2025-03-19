@@ -12,7 +12,7 @@ build:
     bunx vite build
 # keep a watching build running.
 build-watch:
-    bunx vite build --watch
+    bunx vite build --watch --config vite.config.ts
 # create a static build and create a .zip extension from it.
 build-ext: build
     bunx web-ext build -s ./build --overwrite-dest
