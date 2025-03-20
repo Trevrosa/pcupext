@@ -38,7 +38,7 @@
         const target = ev.target as HTMLElement;
         const orig = target.innerText;
         if (response.Ok) {
-            synced!.debug.push({ stored: toSync });
+            synced = response.Ok.data;
             target.innerText = "synced ok!";
             await new Promise((resolve) => setTimeout(resolve, 1000));
             target.innerText = orig;
