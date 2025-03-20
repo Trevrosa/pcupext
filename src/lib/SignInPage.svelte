@@ -27,8 +27,12 @@
         if (sessionResult.Err) {
             statusEle.style.backgroundColor = "RED";
             statusEle.style.color = "WHITE";
-            status = `error! ${sessionResult.Err.toString()}`;
 
+            if (typeof sessionResult.Err === "object") {
+                status = `error! ${JSON.stringify(sessionResult.Err)}`;
+            } else {
+                status = `error! ${sessionResult.Err.toString()}`;
+            }
             return;
         } else {
             statusEle.style.color = "BLACK";
@@ -40,6 +44,13 @@
         session = sessionResult.Ok!;
     }
 </script>
+
+<style>
+    label {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
 
 {#snippet page()}
     <p>

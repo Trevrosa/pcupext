@@ -5,6 +5,8 @@
     import MainApp from "$lib/MainApp.svelte";
     import SignInPage from "$lib/SignInPage.svelte";
 
+    // this is passed around the components. when this is null, the sign in page will appear.
+    // when this is not null, the app will appear.
     let session: UserSession | null = $state(null);
 
     async function getSession(): Promise<UserSession | null> {
@@ -20,6 +22,12 @@
             console.log(err);
         });
 </script>
+
+<style>
+    :global(body) {
+        width: 250px;
+    }
+</style>
 
 <div id="main">
     {#if session != null}
