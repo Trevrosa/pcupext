@@ -2,6 +2,7 @@ import type { Plugin } from "vite";
 import { removeInlineScript } from "./src/removeInlineScript";
 import * as path from "node:path";
 import { readFile, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
 
 const buildDir = path.resolve(__dirname, "build");
 
@@ -10,6 +11,11 @@ const buildDir = path.resolve(__dirname, "build");
  */
 async function cleanManifest() {
     const manifestPath = path.resolve(buildDir, "manifest.json");
+    if (!existsSync(manifestPath)) {
+        console.warn(`${manifestPath} doesn't exist, aborting.`);
+        return;
+    }
+
     const read = await readFile(manifestPath, { encoding: "utf-8" });
     
     const manifest = JSON.parse(read);
