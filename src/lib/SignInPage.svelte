@@ -2,7 +2,7 @@
     import type { Result } from "$lib";
     import { authenticate, type UserSession } from "$lib/auth";
     import MainApp from "./MainApp.svelte";
-    import { setLocalStorage } from "./toilet";
+    import { getLocalStorage, setLocalStorage } from "./toilet";
 
     let username: string = $state("");
     let password: string = $state("");
@@ -11,10 +11,22 @@
 
     let { session }: { session: UserSession | null } = $props();
 
+    try {
+        getLocalStorage("username").then((stored) => {
+            if (stored) {
+                username = stored as string;
+            }
+        });
+    } catch {
+        console.log("no stored username");
+    }
+
     async function submit() {
         status = "";
         const statusEle = document.getElementById("status")!;
         statusEle.style.backgroundColor = "";
+
+        setLocalStorage({ username: username });
 
         let sessionResult: Result<UserSession> | null = null;
         try {
@@ -45,13 +57,6 @@
     }
 </script>
 
-<style>
-    label {
-        display: flex;
-        flex-direction: column;
-    }
-</style>
-
 {#snippet page()}
     <p>
         <label for="username">Username</label>
@@ -71,3 +76,10 @@
 {:else}
     <MainApp {session} />
 {/if}
+
+<style>
+    label {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
