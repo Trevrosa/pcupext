@@ -1,6 +1,5 @@
 import type { Result } from "$lib";
-
-const API_URL = "https://pcup.trevrosa.dev";
+import { API_URL } from "./api";
 
 export interface UserSession {
     id: string;
@@ -28,8 +27,7 @@ export async function authenticate(
 
     const response = await fetch(request);
 
-    const responseJson = await response.json();
-    return responseJson;
+    return await response.json();
 }
 
 export async function validateSession(sessionId: string): Promise<boolean> {

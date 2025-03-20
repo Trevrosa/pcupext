@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Result } from "$lib";
     import { authenticate, type UserSession } from "$lib/auth";
-    import MainApp from "./MainApp.svelte";
+    import App from "./App.svelte";
     import { setLocalStorage } from "./toilet";
 
     let username: string = $state("");
@@ -12,7 +12,7 @@
     let { session }: { session: UserSession | null } = $props();
 
     async function submit() {
-        status = "";
+        status = "logging in...";
         const statusEle = document.getElementById("status")!;
         statusEle.style.backgroundColor = "";
 
@@ -45,29 +45,32 @@
     }
 </script>
 
-<style>
-    label {
-        display: flex;
-        flex-direction: column;
-    }
-</style>
-
 {#snippet page()}
-    <p>
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" bind:value={username} />
-    </p>
-    <p>
-        <label for="username">Password</label>
-        <input type="text" id="password" name="password" bind:value={password} />
-    </p>
-    <p id="status">{status}</p>
-    <button aria-label="submit" onclick={submit}>submit</button>
+    <div id="form">
+        <h2 class="text-2xl font-semibold">Sign in</h2>
+        <div>
+            <label for="username">Username</label>
+            <input class="" type="text" id="username" name="username" bind:value={username} />
+        </div>
+        <div>
+            <label for="username">Password</label>
+            <input type="text" id="password" name="password" bind:value={password} />
+        </div>
+        <p id="status">{status}</p>
+        <button aria-label="submit" onclick={submit}>submit</button>
+    </div>
 {/snippet}
 
 <!-- we want to render the sign in page if we are signed out. (session is null) -->
 {#if session == null}
     {@render page()}
 {:else}
-    <MainApp {session} />
+    <App {session} />
 {/if}
+
+<style>
+    #form label {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
