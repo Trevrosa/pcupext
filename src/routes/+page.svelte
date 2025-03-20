@@ -1,23 +1,30 @@
 <script lang="ts">
     import type { UserSession } from "$lib/auth";
-    import SignInPage from "$lib/SignInPage.svelte";
     import { getLocalStorage } from "$lib/toilet";
 
-    async function getSession(): Promise<UserSession> {
-        return getLocalStorage("session") as Promise<UserSession>;
+    import MainApp from "$lib/MainApp.svelte";
+    import SignInPage from "$lib/SignInPage.svelte";
+
+    let session: UserSession | null = $state(null);
+
+    async function getSession(): Promise<UserSession | null> {
+        return getLocalStorage("session");
     }
+
+    getSession()
+        .then((val) => {
+            session = val;
+        })
+        .catch((err) => {
+            // no session
+            console.log(err);
+        });
 </script>
 
-<h1>
-    {#await getSession()}
-        LOADING
-    {:then session}
-        {JSON.stringify(session)}
-    {/await}
-</h1>
-<div id="page">
-    <!-- {#if }
-    
-    {/if} -->
-    <SignInPage />
+<div id="main">
+    {#if session != null}
+        <MainApp {session} />
+    {:else}
+        <SignInPage {session} />
+    {/if}
 </div>

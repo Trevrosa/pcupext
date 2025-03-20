@@ -26,22 +26,47 @@ export async function setLocalStorage(record: Record<string, unknown>) {
 /**
  * Cross-browser way to get `key` from the extension's local storage.
  *
- * @param key the thing to be gound
+ * @param key the thing to be found
  */
-export async function getLocalStorage(key: string): Promise<unknown> {
+export async function getLocalStorage<T>(key: string): Promise<T | null> {
     try {
         // @ts-expect-error chrome firefox very sad
         if (storage) {
             // @ts-expect-error chrome firefox very sad
-            return await storage.local.get(key)[key];
+            return (await storage.local.get(key)[key]) as T;
         } else if (chrome.storage) {
-            return (await chrome.storage.local.get(key))[key];
+            return (await chrome.storage.local.get(key))[key] as T;
         }
     } catch {
         try {
-            return (await chrome.storage.local.get(key))[key];
+            return (await chrome.storage.local.get(key))[key] as T;
         } catch {
             console.error("storage get FAILd");
         }
     }
+    return null;
+}
+
+/**
+ * Cross-browser way to remove `key` from the extension's local storage.
+ *
+ * @param key the thing to remove
+ */
+export async function removeLocalStorage(key: string) {
+    try {
+        // @ts-expect-error chrome firefox very sad
+        if (storage) {
+            // @ts-expect-error chrome firefox very sad
+            return await storage.local.remove(key);
+        } else if (chrome.storage) {
+            return await chrome.storage.local.remove(key);
+        }
+    } catch {
+        try {
+            return await chrome.storage.local.remove(key);
+        } catch {
+            console.error("storage get FAILd");
+        }
+    }
+    return null;
 }
