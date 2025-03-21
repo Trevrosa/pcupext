@@ -1,3 +1,6 @@
+import type { UserSession } from "./auth";
+import { getLocalStorage } from "./toilet";
+
 /**
  * This is a representation of serde-json's serialized Result.
  *
@@ -8,4 +11,8 @@
 export interface Result<T> {
     Ok?: T;
     Err?: unknown;
+}
+
+export async function getSession(): Promise<UserSession | null> {
+    return getLocalStorage("session");
 }
