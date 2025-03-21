@@ -4,8 +4,8 @@
 
     import type { UserSession } from "$lib/auth";
 
-    import MainApp from "$lib/App.svelte";
-    import SignInPage from "$lib/SignInPage.svelte";
+    import App from "$lib/App.svelte";
+    import SignIn from "$lib/SignInPage.svelte";
     import { getSession } from "$lib";
 
     // this is passed around the components. when this is null, the sign in page will appear.
@@ -24,9 +24,9 @@
 
 <div id="main">
     {#if session != null}
-        <MainApp {session} />
+        <App {session} />
     {:else}
-        <SignInPage {session} />
+        <SignIn {session} />
     {/if}
 </div>
 

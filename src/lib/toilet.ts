@@ -8,12 +8,7 @@
 export async function setLocalStorage(record: Record<string, unknown>) {
     try {
         // @ts-expect-error chrome firefox very sad
-        if (storage) {
-            // @ts-expect-error chrome firefox very sad
-            await storage.local.set(record);
-        } else if (chrome.storage) {
-            await chrome.storage.local.set(record);
-        }
+        await storage.local.set(record);
     } catch {
         try {
             await chrome.storage.local.set(record);
@@ -36,12 +31,7 @@ export async function getLocalStorage<T>(key: string): Promise<T | null> {
 
     try {
         // @ts-expect-error chrome firefox very sad
-        if (storage) {
-            // @ts-expect-error chrome firefox very sad
-            return (await storage.local.get(key)[key]) as T;
-        } else if (chrome.storage) {
-            return (await chrome.storage.local.get(key))[key] as T;
-        }
+        return (await storage.local.get(key)[key]) as T;
     } catch {
         try {
             return (await chrome.storage.local.get(key))[key] as T;
@@ -60,12 +50,7 @@ export async function getLocalStorage<T>(key: string): Promise<T | null> {
 export async function removeLocalStorage(key: string) {
     try {
         // @ts-expect-error chrome firefox very sad
-        if (storage) {
-            // @ts-expect-error chrome firefox very sad
-            return await storage.local.remove(key);
-        } else if (chrome.storage) {
-            return await chrome.storage.local.remove(key);
-        }
+        return await storage.local.remove(key);
     } catch {
         try {
             return await chrome.storage.local.remove(key);

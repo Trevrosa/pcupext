@@ -38,7 +38,6 @@ export async function removeInlineScript(directory: string) {
     });
 
     for (const file of files) {
-        console.log(`editing file with inline script: ${file}`);
         const f = await fs.readFile(file, { encoding: "utf-8" });
 
         const script = f.match(scriptRegex);
@@ -59,7 +58,9 @@ export async function removeInlineScript(directory: string) {
 
             await fs.writeFile(file, newHtml);
             await fs.writeFile(scriptPath, formattedScript);
-            console.log(`inline script extracted and saved at: ${scriptPath}`);
+            console.log(
+                `inline script in '${path.relative(".", file)}' extracted and saved at: '${path.relative(".", scriptPath)}'`
+            );
         }
     }
 }
