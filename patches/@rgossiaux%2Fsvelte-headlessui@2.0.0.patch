@@ -1,0 +1,16 @@
+diff --git a/package.json b/package.json
+index ad5d4591d6685c1549cbf85b0374275cdb6c400e..14bbe2a244efffc0651fb5acfe76be8a0b8b37fe 100644
+--- a/package.json
++++ b/package.json
+@@ -61,7 +61,9 @@
+   "type": "module",
+   "exports": {
+     "./package.json": "./package.json",
+-    ".": "./index.js"
++    ".": {
++      "svelte": "./index.js"
++    }
+   },
+   "svelte": "./index.js"
+ }
+\ No newline at end of file

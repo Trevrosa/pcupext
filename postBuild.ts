@@ -17,10 +17,10 @@ async function cleanManifest() {
     }
 
     const read = await readFile(manifestPath, { encoding: "utf-8" });
-    
+
     const manifest = JSON.parse(read);
     delete manifest["$schema"];
-    
+
     await writeFile(manifestPath, JSON.stringify(manifest));
     console.log("cleaned manifest.json");
 }

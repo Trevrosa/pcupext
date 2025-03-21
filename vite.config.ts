@@ -6,12 +6,7 @@ import postBuild from "./postBuild";
 import tailwindcss from "@tailwindcss/vite";
 
 const config: UserConfig = defineConfig({
-    plugins: [
-        tailwindcss(),
-        sveltekit(),
-        enhancedImages(),
-        postBuild(),
-    ],
+    plugins: [tailwindcss(), sveltekit(), enhancedImages(), postBuild()],
 });
 
 export default config;

@@ -35,7 +35,12 @@
         width: 250px;
         height: 400px;
 
-        font-family: Open Sans, Segoe UI, Helvetica Neue, Ubuntu, sans-serif;
+        font-family:
+            Open Sans,
+            Segoe UI,
+            Helvetica Neue,
+            Ubuntu,
+            sans-serif;
         font-size: 75%;
     }
 </style>

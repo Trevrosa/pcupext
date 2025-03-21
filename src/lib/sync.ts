@@ -28,7 +28,7 @@ export async function syncUserData(
     const request = new Request(`${API_URL}/sync/${sessionId}`, {
         method: "POST",
         headers: [["Content-Type", "application/json"]],
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
     });
 
     const response = await fetch(request);

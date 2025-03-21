@@ -29,6 +29,11 @@ export async function setLocalStorage(record: Record<string, unknown>) {
  * @param key the thing to be found
  */
 export async function getLocalStorage<T>(key: string): Promise<T | null> {
+    if (typeof window === "undefined") {
+        // we are in node, dont run.
+        return null;
+    }
+
     try {
         // @ts-expect-error chrome firefox very sad
         if (storage) {
