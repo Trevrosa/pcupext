@@ -40,4 +40,4 @@ lint:
     bunx eslint .
 # run web-ext lint.
 lint-ext:
-    bunx web-ext lint
+    bunx web-ext lint -s ./build
